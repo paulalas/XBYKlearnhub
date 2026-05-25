@@ -1,0 +1,285 @@
+@using Kentico.PageBuilder.Web.Mvc
+@using Kentico.Content.Web.Mvc
+@using Kentico.Web.Mvc
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>@ViewData["Title"] - LearnHub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="apple-touch-icon" sizes="180x180" href="~/assets/images/favicon_io/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="~/assets/images/favicon_io/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="~/assets/images/favicon_io/favicon-16x16.png">
+  <link rel="manifest" href="~/assets/images/favicon_io/site.webmanifest">
+  
+  <!-- Google Font - Geist -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+  
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  
+  <!-- Tabler Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@@tabler/icons-webfont@3.3.0/dist/tabler-icons.min.css" />
+  
+  <!-- Page Builder Styles -->
+  <page-builder-styles />
+  
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+
+<body>
+  <!-- Navbar Start -->
+  <nav class="navbar navbar-expand-lg bg-white shadow-sm sticky-top">
+    <div class="container">
+      <a class="navbar-brand d-inline-flex gap-2 align-items-center lh-1" href="/">
+        <span class="text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="icon icon-tabler icons-tabler-outline icon-tabler-book">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
+            <path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
+            <path d="M3 6l0 13" />
+            <path d="M12 6l0 13" />
+            <path d="M21 6l0 13" />
+          </svg></span>
+        <span class="fw-bold">LearnHub</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a href="#hero" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="#courses" class="nav-link">Courses</a></li>
+          <li class="nav-item"><a href="#mentor" class="nav-link">Mentor</a></li>
+          <li class="nav-item"><a href="#group" class="nav-link">Group</a></li>
+          <li class="nav-item"><a href="#testimonials" class="nav-link">Testimonials</a></li>
+          <li class="nav-item"><a href="#pricing" class="nav-link">Pricing</a></li>
+        </ul>
+        <div class="d-flex gap-3 align-items-center">
+          <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- Navbar End -->
+
+  <!-- Main Content -->
+  <main class="py-4">
+    @RenderBody()
+  </main>
+  <!-- End Main Content -->
+
+  <!-- Footer Start -->
+  <footer class="pt-lg-13 bg-light py-8">
+    <div class="container">
+      <div class="row gy-8">
+        <div class="col-md-4">
+          <div class="">
+            <a class="d-inline-flex gap-2 align-items-center lh-1" href="/">
+              <span class="text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
+                  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-book">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
+                  <path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
+                  <path d="M3 6l0 13" />
+                  <path d="M12 6l0 13" />
+                  <path d="M21 6l0 13" />
+                </svg></span>
+              <span class="fw-bold">LearnHub</span>
+            </a>
+            <p class="mt-4 mb-6">Empowering millions of learners worldwide with industry-leading courses and expert
+              mentors.</p>
+            <div class="d-flex flex-column gap-2">
+              <span class="d-flex align-items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="icon icon-tabler icons-tabler-outline icon-tabler-mail text-primary">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" />
+                  <path d="M3 7l9 6l9 -6" />
+                </svg>
+                <span class="small">support@learnhub.com</span>
+              </span>
+              <span class="d-flex align-items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="icon icon-tabler icons-tabler-outline icon-tabler-phone text-primary">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path
+                    d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2" />
+                </svg>
+                <span class="small">+1 (555) 123-4567</span>
+              </span>
+              <span class="d-flex align-items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="icon icon-tabler icons-tabler-outline icon-tabler-map-pin text-primary">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+                  <path d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z" />
+                </svg>
+                <span class="small">123 Learning Street, Education City, EC 12345</span>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="row">
+            <div class="col-lg-3 col-md-6">
+              <div class="">
+                <h5 class="fw-semibold mb-4">Platform</h5>
+                <ul class="list-unstyled small">
+                  <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Browse Courses</a></li>
+                  <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Find Mentors</a></li>
+                  <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Community</a></li>
+                  <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Success Stories</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+              <div>
+                <h5 class="fw-semibold mb-4">Company</h5>
+                <ul class="list-unstyled small">
+                  <li class="mb-2"><a href="#" class="text-muted text-decoration-none">About Us</a></li>
+                  <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Careers</a></li>
+                  <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Press</a></li>
+                  <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Contact</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+              <div>
+                <h5 class="fw-semibold mb-4">Resources</h5>
+                <ul class="list-unstyled small">
+                  <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Blog</a></li>
+                  <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Help Center</a></li>
+                  <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Guides</a></li>
+                  <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Webinars</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+              <div>
+                <h5 class="fw-semibold mb-4">Legal</h5>
+                <ul class="list-unstyled small">
+                  <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Terms of Service</a></li>
+                  <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Privacy Policy</a></li>
+                  <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Cookie Policy</a></li>
+                  <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Accessibility</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="border-top mt-8 pt-6 row small">
+        <div class="col-12 d-flex flex-column flex-md-row justify-content-between">
+          <div>
+            <p>© 2026 LearnHub. All rights reserved. Developed by <a href="https://codescandy.com/" class="link-primary" target="_blank">Codescandy</a> • Distributed by <a href="https://themewagon.com/" class="link-primary" target="_blank">ThemeWagon</a>
+            </p>
+          </div>
+          <div>
+            <div class="">
+              <a href="#" class="btn rounded-circle btn-light btn-icon btn-xs">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-x">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M4 4l11.733 16h4.267l-11.733 -16z" />
+                  <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
+                </svg>
+              </a>
+              <a href="#" class="btn rounded-circle btn-light btn-icon btn-xs">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"
+                  class="icon icon-tabler icons-tabler-filled icon-tabler-brand-facebook">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path
+                    d="M18 2a1 1 0 0 1 .993 .883l.007 .117v4a1 1 0 0 1 -.883 .993l-.117 .007h-3v1h3a1 1 0 0 1 .991 1.131l-.02 .112l-1 4a1 1 0 0 1 -.858 .75l-.113 .007h-2v6a1 1 0 0 1 -.883 .993l-.117 .007h-4a1 1 0 0 1 -.993 -.883l-.007 -.117v-6h-2a1 1 0 0 1 -.993 -.883l-.007 -.117v-4a1 1 0 0 1 .883 -.993l.117 -.007h2v-1a6 6 0 0 1 5.775 -5.996l.225 -.004h3z" />
+                </svg>
+              </a>
+              <a href="#" class="btn rounded-circle btn-light btn-icon btn-xs">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-instagram">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M4 4m0 4a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z" />
+                  <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+                  <path d="M16.5 7.5l0 .01" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- Footer End -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content rounded-5">
+        <div class="modal-body p-6">
+          <div class="mb-3">
+            <div class="d-flex justify-content-between">
+              <h3 class="h4 fw-bold" id="exampleModalLabel">Get Started</h3>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+          </div>
+          <form class="mt-3">
+            <div class="mb-3">
+              <label for="name" class="form-label">Full Name</label>
+              <input type="text" class="form-control" id="name" placeholder="Enter your name">
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="email" placeholder="Enter email">
+            </div>
+            <div class="mb-3">
+              <label for="course" class="form-label">Select Course</label>
+              <select class="form-select" id="course">
+                <option selected>Choose a course...</option>
+                <option value="1">Web Development</option>
+                <option value="2">Digital Marketing</option>
+                <option value="3">Data Science</option>
+                <option value="4">Graphic Design</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="message" class="form-label">Message</label>
+              <textarea class="form-control" id="message" rows="3" placeholder="Tell us about your learning goals"></textarea>
+            </div>
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="terms">
+              <label class="form-check-label small" for="terms">
+                I agree to the terms and conditions
+              </label>
+            </div>
+            <div>
+              <button type="submit" class="btn btn-primary w-100">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Page Builder Scripts -->
+  <page-builder-scripts />
+  
+  <!-- Custom Scripts -->
+  <script src="~/js/site.js" asp-append-version="true"></script>
+</body>
+
+</html>

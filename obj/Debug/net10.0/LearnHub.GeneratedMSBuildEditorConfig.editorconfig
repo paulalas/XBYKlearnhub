@@ -1,0 +1,87 @@
+is_global = true
+build_property.TargetFramework = net10.0
+build_property.TargetFrameworkIdentifier = .NETCoreApp
+build_property.TargetFrameworkVersion = v10.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = LearnHub
+build_property.RootNamespace = LearnHub
+build_property.ProjectDir = C:\Users\work\Work\xbyk\learnhub\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 9.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\work\Work\xbyk\learnhub
+build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 10.0
+build_property.EnableCodeStyleSeverity = 
+
+[C:/Users/work/Work/xbyk/learnhub/Components/Widgets/HomeBannerWidget/_HomeBannerWidget.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xXaWRnZXRzXEhvbWVCYW5uZXJXaWRnZXRcX0hvbWVCYW5uZXJXaWRnZXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/work/Work/xbyk/learnhub/Components/Widgets/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xXaWRnZXRzXF9WaWV3SW1wb3J0cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/work/Work/xbyk/learnhub/PageTemplates/CoursesList/_CoursesList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZVRlbXBsYXRlc1xDb3Vyc2VzTGlzdFxfQ291cnNlc0xpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/work/Work/xbyk/learnhub/PageTemplates/Course/_Course.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZVRlbXBsYXRlc1xDb3Vyc2VcX0NvdXJzZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/work/Work/xbyk/learnhub/PageTemplates/Group/_Group.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZVRlbXBsYXRlc1xHcm91cFxfR3JvdXAuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/work/Work/xbyk/learnhub/PageTemplates/Home/_Home.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZVRlbXBsYXRlc1xIb21lXF9Ib21lLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/work/Work/xbyk/learnhub/PageTemplates/MentorsList/_MentorsList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZVRlbXBsYXRlc1xNZW50b3JzTGlzdFxfTWVudG9yc0xpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/work/Work/xbyk/learnhub/PageTemplates/Mentor/_Mentor.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZVRlbXBsYXRlc1xNZW50b3JcX01lbnRvci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/work/Work/xbyk/learnhub/PageTemplates/Price/_Price.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZVRlbXBsYXRlc1xQcmljZVxfUHJpY2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/work/Work/xbyk/learnhub/PageTemplates/Pricinglist/_Pricinglist.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZVRlbXBsYXRlc1xQcmljaW5nbGlzdFxfUHJpY2luZ2xpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/work/Work/xbyk/learnhub/PageTemplates/TestimonialsList/_TestimonialsList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZVRlbXBsYXRlc1xUZXN0aW1vbmlhbHNMaXN0XF9UZXN0aW1vbmlhbHNMaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/work/Work/xbyk/learnhub/PageTemplates/Testimonial/_Testimonial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZVRlbXBsYXRlc1xUZXN0aW1vbmlhbFxfVGVzdGltb25pYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/work/Work/xbyk/learnhub/PageTemplates/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZVRlbXBsYXRlc1xfVmlld0ltcG9ydHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/work/Work/xbyk/learnhub/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/work/Work/xbyk/learnhub/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/work/Work/xbyk/learnhub/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

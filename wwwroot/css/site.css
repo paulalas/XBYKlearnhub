@@ -1,0 +1,314 @@
+/* LearnHub Custom Styles - Based on Template SCSS */
+
+/* ==========================================================================
+   Base Styles & Typography
+   ========================================================================== */
+body {
+  font-family: 'Geist', sans-serif;
+  font-size: 0.975rem;
+  color: #525252; /* gray-600 */
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-weight: 600;
+  color: #171717; /* gray-900 */
+}
+
+a {
+  text-decoration: none;
+  color: #404040; /* gray-700 */
+}
+
+a:hover {
+  color: #09C82C; /* primary green */
+  text-decoration: none;
+}
+
+/* Active nav link */
+.nav-link.active {
+  color: #09C82C !important; /* primary green */
+}
+
+/* ==========================================================================
+   Typography & Text Utilities
+   ========================================================================== */
+.text-xs {
+  font-size: 13px !important;
+}
+
+/* ==========================================================================
+   Circle Background Decoration
+   ========================================================================== */
+.circle-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 800px;
+  background-color: rgba(9, 200, 44, 0.05); /* Primary green color */
+  border-radius: 9999px;
+  filter: blur(48px);
+  z-index: -1;
+}
+
+/* ==========================================================================
+   Card Styles
+   ========================================================================== */
+.card-lift {
+  transition: transform 0.2s ease-in-out,
+              border-color 0.2s ease-in-out,
+              background-color 0.2s ease-in-out,
+              box-shadow 0.2s ease-in-out;
+  border-radius: 0.5rem;
+}
+
+.card-lift:hover,
+.card-lift:focus,
+.card-lift.active {
+  transform: translateY(-0.25rem);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+              0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* ==========================================================================
+   Play Button with Pulse Animation
+   ========================================================================== */
+.play-btn {
+  font-size: 24px;
+  line-height: 32px;
+  position: relative;
+  background-color: rgba(9, 200, 44, 0.85); /* Primary green */
+}
+
+.play-btn:hover {
+  background-color: rgba(9, 200, 44, 1);
+  transform: scale(1.05);
+}
+
+.play-btn:before {
+  content: "";
+  position: absolute;
+  width: 150%;
+  height: 150%;
+  animation-delay: 0s;
+  animation: pulsate1 2s;
+  animation-direction: forwards;
+  animation-iteration-count: infinite;
+  animation-timing-function: steps;
+  opacity: 1;
+  border-radius: 50%;
+  border: 5px solid #e5e5e5;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px 0px;
+}
+
+@keyframes pulsate1 {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+    box-shadow: none;
+  }
+}
+
+/* ==========================================================================
+   Avatar Styles
+   ========================================================================== */
+.avatar {
+  position: relative;
+  display: inline-block;
+  width: 3rem;
+  height: 3rem;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Avatar Sizes */
+.avatar-xs {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.avatar-sm {
+  width: 2rem;
+  height: 2rem;
+}
+
+.avatar-md {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.avatar-lg {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+.avatar-xl {
+  width: 5rem;
+  height: 5rem;
+}
+
+.avatar-xxl {
+  width: 7.5rem;
+  height: 7.5rem;
+}
+
+.avatar-xxxl {
+  width: 11rem;
+  height: 11rem;
+}
+
+/* Avatar Group */
+.avatar-group .avatar + .avatar {
+  margin-left: -1rem;
+}
+
+.avatar-group .avatar:hover {
+  z-index: 2;
+}
+
+.avatar-group img,
+.avatar-group .avatar .avatar-initials {
+  border: 2px solid #ffffff;
+}
+
+/* ==========================================================================
+   Icon Shape Styles
+   ========================================================================== */
+.icon-shape {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* Icon Sizes */
+.icon-xxs {
+  width: 1rem;
+  height: 1rem;
+  line-height: 1rem;
+}
+
+.icon-xs {
+  width: 1.5rem;
+  height: 1.5rem;
+  line-height: 1.5rem;
+}
+
+.icon-sm {
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+}
+
+.icon-md {
+  width: 2.5rem;
+  height: 2.5rem;
+  line-height: 2.5rem;
+}
+
+.icon-lg {
+  width: 3rem;
+  height: 3rem;
+  line-height: 3rem;
+}
+
+.icon-xl {
+  width: 3.5rem;
+  height: 3.5rem;
+  line-height: 3.5rem;
+}
+
+.icon-xxl {
+  width: 4rem;
+  height: 4rem;
+  line-height: 4rem;
+}
+
+.icon-xxxl {
+  width: 7rem;
+  height: 7rem;
+  line-height: 7rem;
+}
+
+/* ==========================================================================
+   Button Icon Styles
+   ========================================================================== */
+.btn-icon {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.92969rem;
+  font-weight: 400;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+}
+
+.btn-icon.btn-xs {
+  font-size: 0.75rem;
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.btn-icon.btn-sm {
+  font-size: 0.875rem;
+  width: 2.1875rem;
+  height: 2.1875rem;
+}
+
+.btn-icon.btn-lg {
+  font-size: 1rem;
+  width: 3.36875rem;
+  height: 3.36875rem;
+}
+
+/* ==========================================================================
+   Custom Color Utilities
+   ========================================================================== */
+:root {
+  --learnhub-primary: #09C82C;
+  --learnhub-warning: #F0B100;
+  --learnhub-danger: #FB2C36;
+  --learnhub-gray-100: #f5f5f5;
+  --learnhub-gray-200: #e5e5e5;
+  --learnhub-gray-600: #525252;
+  --learnhub-gray-700: #404040;
+  --learnhub-gray-800: #262626;
+  --learnhub-gray-900: #171717;
+}
+
+/* Light button custom styling */
+.btn-light {
+  color: var(--learnhub-gray-600);
+  background-color: var(--learnhub-gray-100);
+  border-color: var(--learnhub-gray-100);
+}
+
+.btn-light:hover {
+  color: var(--learnhub-gray-800);
+  background-color: var(--learnhub-gray-200);
+  border-color: var(--learnhub-gray-200);
+}
+
+/* ==========================================================================
+   Responsive Utilities
+   ========================================================================== */
+@media (max-width: 767.98px) {
+  .circle-bg {
+    width: 400px;
+    height: 400px;
+  }
+}

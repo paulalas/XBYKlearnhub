@@ -1,0 +1,17 @@
+@using Kentico.PageBuilder.Web.Mvc
+@using Kentico.Content.Web.Mvc
+@using Kentico.Content.Web.Mvc.PageBuilder
+@using Kentico.Web.Mvc
+
+@model TemplateViewModel<PageTemplates.CoursesList.CoursesListPageTemplateProperties>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Courses";
+}
+
+<section class="py-lg-13 py-8">
+    <div class="container">
+        <editable-area area-identifier="main" />
+    </div>
+</section>

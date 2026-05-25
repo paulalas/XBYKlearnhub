@@ -1,0 +1,18 @@
+@using Kentico.PageBuilder.Web.Mvc
+@using Kentico.Content.Web.Mvc
+@using Kentico.Content.Web.Mvc.PageBuilder
+@using Kentico.Web.Mvc
+
+@model TemplateViewModel<PageTemplates.Home.HomePageTemplateProperties>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Home";
+}
+
+<!-- Main content area with editable sections -->
+<section class="py-lg-13 py-8 bg-white">
+    <div class="container">
+        <editable-area area-identifier="main" />
+    </div>
+</section>
