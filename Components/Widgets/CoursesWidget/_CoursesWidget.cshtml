@@ -1,0 +1,175 @@
+@model LearnHub.Widgets.CoursesWidgetViewModel
+
+<section class="py-lg-13 py-8" id="courses">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-lg-6 mx-auto">
+                <div class="mb-10">
+                    <span class="text-primary text-uppercase small fw-semibold" style="letter-spacing: .125rem;">@Model.Title</span>
+                    <h2 class="fw-bold mt-4 mb-4">@Html.Raw(Model.Subtitle)</h2>
+                    <p class="mb-0">@Model.Description</p>
+                </div>
+            </div>
+        </div>
+        <div>
+            <!-- Course Cards -->
+            <div class="row g-4">
+                @foreach (var course in Model.Courses)
+                {
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card shadow-sm h-100 rounded-5 card-lift">
+                            <div class="position-relative overflow-hidden">
+                                @if (!string.IsNullOrEmpty(course.ThumbnailUrl))
+                                {
+                                    <img src="@course.ThumbnailUrl" class="rounded-top-5 card-img-top" alt="@course.Title">
+                                }
+                                else
+                                {
+                                    <div class="rounded-top-5 card-img-top bg-light" style="height: 200px; display: flex; align-items: center; justify-content: center;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="icon icon-tabler icons-tabler-outline icon-tabler-book text-muted">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
+                                            <path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
+                                            <path d="M3 6l0 13" />
+                                            <path d="M12 6l0 13" />
+                                            <path d="M21 6l0 13" />
+                                        </svg>
+                                    </div>
+                                }
+                            </div>
+                            <div class="card-body p-6">
+                                <h3 class="mb-1 fs-6">@course.Title</h3>
+                                
+                                @if (!string.IsNullOrEmpty(course.TeacherName))
+                                {
+                                    <div class="text-xs d-flex gap-2 align-items-center mt-4 mb-8">
+                                        <div class="avatar avatar-xs rounded-circle bg-primary bg-opacity-10 d-flex align-items-center justify-content-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                class="icon icon-tabler icons-tabler-user text-primary">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <circle cx="12" cy="7" r="4" />
+                                                <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                                            </svg>
+                                        </div>
+                                        <span>@course.TeacherName</span>
+                                    </div>
+                                }
+
+                                <div class="d-flex align-items-center justify-content-between mb-3 border-bottom pb-3">
+                                    @if (!string.IsNullOrEmpty(course.Duration))
+                                    {
+                                        <div class="text-xs align-items-center d-flex gap-1 lh-1">
+                                            <span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="icon icon-tabler icons-tabler-clock">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                    <circle cx="12" cy="12" r="9" />
+                                                    <polyline points="12 7 12 12 15 15" />
+                                                </svg>
+                                            </span>
+                                            <span>@course.Duration</span>
+                                        </div>
+                                    }
+
+                                    @if (course.Followers > 0)
+                                    {
+                                        <div class="text-xs align-items-center d-flex gap-1 lh-1">
+                                            <span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="icon icon-tabler icons-tabler-users">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                    <circle cx="9" cy="7" r="4" />
+                                                    <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                                                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                                                    <path d="M21 21v-2a4 4 0 0 0 -3 -3.85" />
+                                                </svg>
+                                            </span>
+                                            <span>@FormatFollowers(course.Followers)</span>
+                                        </div>
+                                    }
+
+                                    @if (course.Stars > 0)
+                                    {
+                                        <div class="text-xs align-items-center d-flex gap-1 lh-1">
+                                            <span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                                    fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-star text-warning">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                    <path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.093 -6.26l3.093 6.26l6.9 1l-5 4.867l1.179 6.873z" />
+                                                </svg>
+                                            </span>
+                                            <span>@course.Stars.ToString("F1")</span>
+                                        </div>
+                                    }
+                                </div>
+
+                                <div class="d-flex justify-content-between align-items-center mt-4">
+                                    @if (course.Price > 0)
+                                    {
+                                        <span class="fs-5 text-dark fw-bold">$@course.Price.ToString("F0")</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="fs-5 text-success fw-bold">Free</span>
+                                    }
+
+                                    @if (!string.IsNullOrEmpty(course.ButtonUrl))
+                                    {
+                                        <a href="@course.ButtonUrl" class="small link-primary">
+                                            <span>@course.ButtonText</span>
+                                            <span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="icon icon-tabler icons-tabler-arrow-right ms-1">
+                                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                                    <line x1="13" y1="18" x2="19" y2="12"></line>
+                                                    <line x1="13" y1="6" x2="19" y2="12"></line>
+                                                </svg>
+                                            </span>
+                                        </a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            @if (Model.ShowViewAllButton && !string.IsNullOrEmpty(Model.ViewAllButtonURL))
+            {
+                <div class="row">
+                    <div class="col-12 text-center mt-10">
+                        <a href="@Model.ViewAllButtonURL" class="btn btn-outline-dark">
+                            <span>@Model.ViewAllButtonText</span>
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                    class="icon icon-tabler icons-tabler-arrow-right ms-1">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <line x1="13" y1="18" x2="19" y2="12"></line>
+                                    <line x1="13" y1="6" x2="19" y2="12"></line>
+                                </svg>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+@functions {
+    private string FormatFollowers(decimal followers)
+    {
+        if (followers >= 1000)
+        {
+            return (followers / 1000).ToString("F1") + "K";
+        }
+        return followers.ToString("F0");
+    }
+}

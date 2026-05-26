@@ -1,0 +1,133 @@
+@model LearnHub.Widgets.MentorsWidgetViewModel
+
+<!-- Mentors Widget -->
+<div class="row g-4">
+    @foreach (var mentor in Model.Mentors)
+    {
+        <!-- Mentor Card -->
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card shadow-sm h-100 rounded-5 text-center p-6 card-lift" style="margin-top: 2rem; margin-bottom: 1.5rem; padding-top: 3rem !important;">
+                <div class="position-relative mb-4">
+                    @if (!string.IsNullOrEmpty(mentor.ThumbnailUrl))
+                    {
+                        <img src="@mentor.ThumbnailUrl" alt="@mentor.Name"
+                             class="rounded-circle mb-4 mx-auto avatar avatar-xl border border-3 border-warning" />
+                    }
+                    else
+                    {
+                        <img src="/assets/images/avatar/default-avatar.jpg" alt="@mentor.Name"
+                             class="rounded-circle mb-4 mx-auto avatar avatar-xl border border-3 border-warning" />
+                    }
+                    
+                    @if (mentor.Stars > 0)
+                    {
+                        <div class="position-absolute bottom-0 start-50 translate-middle-x mb-2">
+                            <span class="badge bg-warning text-xs">
+                                <span>@mentor.Stars.ToString("0.0")</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor"
+                                     class="icon icon-tabler icons-tabler-filled icon-tabler-star text-white">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.093 -6.26l3.093 6.26l6.9 1l-5 4.867l1.179 6.873z" />
+                                </svg>
+                            </span>
+                        </div>
+                    }
+                </div>
+
+                <h3 class="h6 fw-bold mb-1">@mentor.Name</h3>
+                
+                @if (!string.IsNullOrEmpty(mentor.Title))
+                {
+                    <span class="text-muted mb-3 d-block text-xs">@mentor.Title</span>
+                }
+                
+                @if (!string.IsNullOrEmpty(mentor.Description))
+                {
+                    <p class="mb-4 px-3">@mentor.Description</p>
+                }
+                
+                <div class="d-flex justify-content-center gap-3 small mb-3">
+                    @if (mentor.Followers > 0)
+                    {
+                        <div class="d-flex flex-row gap-2">
+                            <span class="fw-bold text-dark">@mentor.Followers.ToString("N0")</span>
+                            <span>Students</span>
+                        </div>
+                    }
+                    
+                    @if (mentor.Courses > 0)
+                    {
+                        <div class="d-flex flex-row gap-2">
+                            <span class="fw-bold text-dark">@mentor.Courses</span>
+                            <span>Courses</span>
+                        </div>
+                    }
+                </div>
+                
+                <div class="d-flex flex-row align-items-center justify-content-center gap-2 mt-4 mb-2">
+                    @if (!string.IsNullOrEmpty(mentor.FirstButtonLink))
+                    {
+                        <a href="@mentor.FirstButtonLink" class="btn rounded-circle btn-light btn-icon btn-xs">
+                            @if (!string.IsNullOrEmpty(mentor.FirstLinkIcon))
+                            {
+                                @Html.Raw(mentor.FirstLinkIcon)
+                            }
+                            else
+                            {
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                     class="icon icon-tabler icons-tabler-outline icon-tabler-brand-x">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M4 4l11.733 16h4.267l-11.733 -16z" />
+                                    <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
+                                </svg>
+                            }
+                        </a>
+                    }
+                    
+                    @if (!string.IsNullOrEmpty(mentor.SecondButtonLink))
+                    {
+                        <a href="@mentor.SecondButtonLink" class="btn rounded-circle btn-light btn-icon btn-xs">
+                            @if (!string.IsNullOrEmpty(mentor.SecondLinkIcon))
+                            {
+                                @Html.Raw(mentor.SecondLinkIcon)
+                            }
+                            else
+                            {
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                     class="icon icon-tabler icons-tabler-outline icon-tabler-brand-linkedin">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M8 11v5" />
+                                    <path d="M8 8v.01" />
+                                    <path d="M12 16v-5" />
+                                    <path d="M16 16v-3a2 2 0 1 0 -4 0" />
+                                    <path d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z" />
+                                </svg>
+                            }
+                        </a>
+                    }
+                    
+                    @if (!string.IsNullOrEmpty(mentor.ThirdButtonLink))
+                    {
+                        <a href="@mentor.ThirdButtonLink" class="btn rounded-circle btn-light btn-icon btn-xs">
+                            @if (!string.IsNullOrEmpty(mentor.ThirdLinkIcon))
+                            {
+                                @Html.Raw(mentor.ThirdLinkIcon)
+                            }
+                            else
+                            {
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                     class="icon icon-tabler icons-tabler-brand-github">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12 12 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+                                </svg>
+                            }
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>

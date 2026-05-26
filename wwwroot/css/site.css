@@ -92,11 +92,7 @@ a:hover {
   position: absolute;
   width: 150%;
   height: 150%;
-  animation-delay: 0s;
-  animation: pulsate1 2s;
-  animation-direction: forwards;
-  animation-iteration-count: infinite;
-  animation-timing-function: steps;
+  animation: pulsate1 2s 0s forwards infinite steps;
   opacity: 1;
   border-radius: 50%;
   border: 5px solid #e5e5e5;

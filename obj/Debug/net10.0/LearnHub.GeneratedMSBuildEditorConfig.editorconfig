@@ -22,8 +22,16 @@ build_property._RazorSourceGeneratorDebug =
 build_property.EffectiveAnalysisLevelStyle = 10.0
 build_property.EnableCodeStyleSeverity = 
 
+[C:/Users/work/Work/xbyk/learnhub/Components/Widgets/CoursesWidget/_CoursesWidget.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xXaWRnZXRzXENvdXJzZXNXaWRnZXRcX0NvdXJzZXNXaWRnZXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/work/Work/xbyk/learnhub/Components/Widgets/HomeBannerWidget/_HomeBannerWidget.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xXaWRnZXRzXEhvbWVCYW5uZXJXaWRnZXRcX0hvbWVCYW5uZXJXaWRnZXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/work/Work/xbyk/learnhub/Components/Widgets/MentorsWidget/_MentorsWidget.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xXaWRnZXRzXE1lbnRvcnNXaWRnZXRcX01lbnRvcnNXaWRnZXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/work/Work/xbyk/learnhub/Components/Widgets/_ViewImports.cshtml]

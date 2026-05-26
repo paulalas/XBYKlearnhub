@@ -2,16 +2,63 @@
 @using Kentico.Content.Web.Mvc
 @using Kentico.Content.Web.Mvc.PageBuilder
 @using Kentico.Web.Mvc
+@using LearnHub
+@using CMS.ContentEngine
+@using CMS.Websites
+@inject IWebPageDataContextRetriever webPageDataContextRetriever
+@inject IContentRetriever contentRetriever
 
 @model TemplateViewModel<PageTemplates.MentorsList.MentorsListPageTemplateProperties>
 
 @{
+    var pageDataContext = webPageDataContextRetriever.Retrieve();
+    var webPageItemGuid = pageDataContext.WebPage.WebPageItemGUID;
+    
+    // Retrieve the full MentorsList data
+    var mentorsListResult = await contentRetriever.RetrievePages<MentorsList>(
+        new RetrievePagesParameters(),
+        query => query
+            .Where(w => w.WhereEquals(nameof(WebPageFields.WebPageItemGUID), webPageItemGuid))
+            .TopN(1),
+        new RetrievalCacheSettings($"MentorsList_{webPageItemGuid}", TimeSpan.FromMinutes(5)),
+        Context.RequestAborted
+    );
+    
+    var mentorsList = mentorsListResult.FirstOrDefault();
+    
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewData["Title"] = "Mentors";
+    ViewData["Title"] = mentorsList?.Title ?? "Mentors";
 }
 
-<section class="py-lg-13 py-8">
+<!-- Mentors List Section -->
+<section class="py-lg-13 py-8 bg-light bg-opacity-25" id="mentor">
     <div class="container">
+        @if (mentorsList != null)
+        {
+            <!-- Page Header -->
+            <div class="row text-center">
+                <div class="col-lg-5 mx-auto">
+                    <div class="mb-10">
+                        @if (!string.IsNullOrEmpty(mentorsList.Name))
+                        {
+                            <span class="text-primary text-uppercase small fw-semibold" style="letter-spacing: .125rem;">@mentorsList.Name</span>
+                        }
+                        
+                        @if (!string.IsNullOrEmpty(mentorsList.Title))
+                        {
+                            <h2 class="fw-bold mt-4 mb-4">@Html.Raw(mentorsList.Title)</h2>
+                        }
+                        
+                        @if (!string.IsNullOrEmpty(mentorsList.Description))
+                        {
+                            <p class="mb-0">@mentorsList.Description</p>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+        
+        <!-- Editable Area for Mentors Widget -->
         <editable-area area-identifier="main" />
     </div>
 </section>

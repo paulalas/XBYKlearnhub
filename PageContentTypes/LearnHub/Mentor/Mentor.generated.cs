@@ -93,5 +93,23 @@ namespace LearnHub
 		/// MentorThumbnail.
 		/// </summary>
 		public IEnumerable<Assets> MentorThumbnail { get; set; }
+
+
+		/// <summary>
+		/// MentorStars.
+		/// </summary>
+		public decimal MentorStars { get; set; }
+
+
+		/// <summary>
+		/// ThirdLinkIcon.
+		/// </summary>
+		public string ThirdLinkIcon { get; set; }
+
+
+		/// <summary>
+		/// ThirdButtonLink.
+		/// </summary>
+		public string ThirdButtonLink { get; set; }
 	}
 }

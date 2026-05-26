@@ -87,5 +87,11 @@ namespace LearnHub
 		/// CourseThumbnail.
 		/// </summary>
 		public IEnumerable<Assets> CourseThumbnail { get; set; }
+
+
+		/// <summary>
+		/// CourseDescription.
+		/// </summary>
+		public string CourseDescription { get; set; }
 	}
 }
