@@ -266,6 +266,6 @@ C:\Users\work\Work\xbyk\learnhub\obj\Debug\net10.0\LearnHub.genruntimeconfig.cac
 C:\Users\work\Work\xbyk\learnhub\obj\Debug\net10.0\ref\LearnHub.dll
 C:\Users\work\Work\xbyk\learnhub\obj\Debug\net10.0\LearnHub.RazorAssemblyInfo.cache
 C:\Users\work\Work\xbyk\learnhub\obj\Debug\net10.0\LearnHub.RazorAssemblyInfo.cs
-C:\Users\work\Work\xbyk\learnhub\obj\Debug\net10.0\compressed\ig6gc5i3wl-{0}-oiyw40qk6f-oiyw40qk6f.gz
 C:\Users\work\Work\xbyk\learnhub\obj\Debug\net10.0\LearnHub.sourcelink.json
 C:\Users\work\Work\xbyk\learnhub\obj\Debug\net10.0\compressed\771zkjjdpt-{0}-pcdzb86krt-pcdzb86krt.gz
+C:\Users\work\Work\xbyk\learnhub\obj\Debug\net10.0\compressed\ig6gc5i3wl-{0}-kuon0z3cuq-kuon0z3cuq.gz
