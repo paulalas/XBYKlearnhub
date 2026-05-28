@@ -36,6 +36,9 @@ builder.Services.AddKentico(features =>
 builder.Services.AddAuthentication();
 builder.Services.AddAuthorization();
 
+// Register application services
+builder.Services.AddScoped<LearnHub.Services.INavigationService, LearnHub.Services.NavigationService>();
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

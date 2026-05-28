@@ -3,11 +3,9 @@
 @if (Model.PricingPlans.Any())
 {
     <div class="row g-4 mx-xxl-13">
-        @for (int i = 0; i < Model.PricingPlans.Count; i++)
+        @foreach (var plan in Model.PricingPlans)
         {
-            var plan = Model.PricingPlans[i];
-            var isMostPopular = i == 1; // Second item is most popular
-            var cardClass = isMostPopular ? "card shadow-sm rounded-5 h-100 border-primary" : "card shadow-sm rounded-5 h-100";
+            var cardClass = plan.IsMostPopular ? "card shadow-sm rounded-5 h-100 border-primary" : "card shadow-sm rounded-5 h-100";
             
             <div class="col-lg-4">
                 <div class="@cardClass">
@@ -71,20 +69,20 @@
                         <div class="d-grid">
                             @if (!string.IsNullOrEmpty(plan.ButtonLink))
                             {
-                                <a href="@plan.ButtonLink" class="btn @(isMostPopular ? "btn-primary" : "btn-light")">
+                                <a href="@plan.ButtonLink" class="btn @(plan.IsMostPopular ? "btn-primary" : "btn-light")">
                                     @plan.ButtonName
                                 </a>
                             }
                             else
                             {
-                                <a href="#!" class="btn @(isMostPopular ? "btn-primary" : "btn-light")">
+                                <a href="#!" class="btn @(plan.IsMostPopular ? "btn-primary" : "btn-light")">
                                     @plan.ButtonName
                                 </a>
                             }
                         </div>
                     </div>
 
-                    @if (isMostPopular)
+                    @if (plan.IsMostPopular)
                     {
                         <div>
                             <span class="badge bg-primary position-absolute top-0 start-50 translate-middle-x mt-n3 rounded-pill text-xs">

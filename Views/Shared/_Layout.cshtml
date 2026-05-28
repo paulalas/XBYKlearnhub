@@ -57,14 +57,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a href="#hero" class="nav-link">Home</a></li>
-          <li class="nav-item"><a href="#courses" class="nav-link">Courses</a></li>
-          <li class="nav-item"><a href="#mentor" class="nav-link">Mentor</a></li>
-          <li class="nav-item"><a href="#group" class="nav-link">Group</a></li>
-          <li class="nav-item"><a href="#testimonials" class="nav-link">Testimonials</a></li>
-          <li class="nav-item"><a href="#pricing" class="nav-link">Pricing</a></li>
-        </ul>
+        @await Component.InvokeAsync("Navigation")
         <div class="d-flex gap-3 align-items-center">
           <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Get Started</a>
         </div>

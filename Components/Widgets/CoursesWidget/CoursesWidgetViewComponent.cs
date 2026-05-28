@@ -4,7 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using CMS.ContentEngine;
 using CMS.DataEngine;
+using CMS.Websites;
+using CMS.Websites.Routing;
 using Kentico.Content.Web.Mvc;
+using Kentico.Content.Web.Mvc.Routing;
 using Kentico.PageBuilder.Web.Mvc;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewComponents;
@@ -25,11 +28,20 @@ namespace LearnHub.Widgets
     public class CoursesWidgetViewComponent : ViewComponent
     {
         private readonly IContentRetriever _contentRetriever;
+        private readonly IWebPageUrlRetriever _webPageUrlRetriever;
+        private readonly IWebsiteChannelContext _websiteChannelContext;
+        private readonly IPreferredLanguageRetriever _preferredLanguageRetriever;
 
         public CoursesWidgetViewComponent(
-            IContentRetriever contentRetriever)
+            IContentRetriever contentRetriever,
+            IWebPageUrlRetriever webPageUrlRetriever,
+            IWebsiteChannelContext websiteChannelContext,
+            IPreferredLanguageRetriever preferredLanguageRetriever)
         {
             _contentRetriever = contentRetriever;
+            _webPageUrlRetriever = webPageUrlRetriever;
+            _websiteChannelContext = websiteChannelContext;
+            _preferredLanguageRetriever = preferredLanguageRetriever;
         }
 
         /// <summary>
@@ -53,6 +65,40 @@ namespace LearnHub.Widgets
                 HttpContext.RequestAborted
             );
 
+            if (!courses.Any())
+            {
+                return View("~/Components/Widgets/CoursesWidget/_CoursesWidget.cshtml", new CoursesWidgetViewModel
+                {
+                    Title = properties.Title,
+                    Subtitle = properties.Subtitle,
+                    Description = properties.Description,
+                    ShowViewAllButton = properties.ShowViewAllButton,
+                    ViewAllButtonText = properties.ViewAllButtonText,
+                    ViewAllButtonURL = properties.ViewAllButtonURL,
+                    Courses = new List<CourseCardViewModel>()
+                });
+            }
+
+            // Get current language
+            var languageName = _preferredLanguageRetriever.Get();
+
+            // Collect all WebPageGuids from ButtonLink
+            var linkedPageGuids = courses
+                .Where(x => x.ButtonLink?.Any() == true)
+                .SelectMany(x => x.ButtonLink.Select(y => y.WebPageGuid))
+                .Distinct()
+                .ToList();
+
+            // Bulk retrieve URLs for all linked pages
+            var urls = linkedPageGuids.Any()
+                ? await _webPageUrlRetriever.Retrieve(
+                    [.. linkedPageGuids],
+                    _websiteChannelContext.WebsiteChannelName,
+                    languageName,
+                    _websiteChannelContext.IsPreview,
+                    HttpContext.RequestAborted)
+                : new Dictionary<System.Guid, WebPageUrl>();
+
             // Map courses to view model
             var courseViewModels = new List<CourseCardViewModel>();
             foreach (var course in courses)
@@ -65,6 +111,17 @@ namespace LearnHub.Widgets
                     thumbnailUrl = thumbnail.Photo?.Url;
                 }
 
+                // Get button link from ButtonLink property
+                string buttonUrl = "#";
+                if (course.ButtonLink?.Any() == true)
+                {
+                    var linkedPageGuid = course.ButtonLink.First().WebPageGuid;
+                    if (urls.ContainsKey(linkedPageGuid))
+                    {
+                        buttonUrl = urls[linkedPageGuid].RelativePath;
+                    }
+                }
+
                 courseViewModels.Add(new CourseCardViewModel
                 {
                     Title = course.CourseTitle,
@@ -75,7 +132,7 @@ namespace LearnHub.Widgets
                     Price = course.CoursePrice,
                     ThumbnailUrl = thumbnailUrl,
                     ButtonText = course.ButtonName ?? "Enroll now",
-                    ButtonUrl = "#"
+                    ButtonUrl = buttonUrl
                 });
             }
 
