@@ -2,16 +2,51 @@
 @using Kentico.Content.Web.Mvc
 @using Kentico.Content.Web.Mvc.PageBuilder
 @using Kentico.Web.Mvc
+@using CMS.ContentEngine
+@using CMS.Websites
+
+@inject IContentRetriever contentRetriever
+@inject IWebPageDataContextRetriever webPageDataContextRetriever
 
 @model TemplateViewModel<PageTemplates.Pricinglist.PricinglistPageTemplateProperties>
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewData["Title"] = "Pricing";
+    
+    var webPageItemGuid = webPageDataContextRetriever.Retrieve().WebPage.WebPageItemGUID;
+    
+    var pricinglist = (await contentRetriever.RetrievePages<LearnHub.Pricinglist>(
+        new RetrievePagesParameters(),
+        query => query
+            .Where(w => w.WhereEquals(nameof(WebPageFields.WebPageItemGUID), webPageItemGuid))
+            .TopN(1),
+        new RetrievalCacheSettings($"Pricinglist_{webPageItemGuid}", TimeSpan.FromMinutes(5)),
+        Context.RequestAborted))
+        .FirstOrDefault();
+    
+    ViewData["Title"] = pricinglist?.Name ?? "Pricing";
 }
 
 <section class="py-lg-13 py-8">
     <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="text-center mb-10">
+                    @if (!string.IsNullOrEmpty(pricinglist?.Name))
+                    {
+                        <span class="text-primary text-uppercase small fw-semibold" style="letter-spacing: .125rem;">@pricinglist.Name</span>
+                    }
+                    @if (!string.IsNullOrEmpty(pricinglist?.Title))
+                    {
+                        <h2 class="fw-bold mt-4 mb-4">@Html.Raw(pricinglist.Title)</h2>
+                    }
+                    @if (!string.IsNullOrEmpty(pricinglist?.Description))
+                    {
+                        <p>@pricinglist.Description</p>
+                    }
+                </div>
+            </div>
+        </div>
         <editable-area area-identifier="main" />
     </div>
 </section>

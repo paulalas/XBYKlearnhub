@@ -1,0 +1,105 @@
+@model LearnHub.Widgets.PricingWidgetViewModel
+
+@if (Model.PricingPlans.Any())
+{
+    <div class="row g-4 mx-xxl-13">
+        @for (int i = 0; i < Model.PricingPlans.Count; i++)
+        {
+            var plan = Model.PricingPlans[i];
+            var isMostPopular = i == 1; // Second item is most popular
+            var cardClass = isMostPopular ? "card shadow-sm rounded-5 h-100 border-primary" : "card shadow-sm rounded-5 h-100";
+            
+            <div class="col-lg-4">
+                <div class="@cardClass">
+                    <div class="card-body p-6">
+                        <div class="text-center mt-5 mb-9">
+                            @if (!string.IsNullOrEmpty(plan.Title))
+                            {
+                                @if (!string.IsNullOrEmpty(plan.PageUrl))
+                                {
+                                    <a href="@plan.PageUrl" class="text-decoration-none">
+                                        <span class="text-dark fs-5 fw-bold">@plan.Title</span>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <span class="text-dark fs-5 fw-bold">@plan.Title</span>
+                                }
+                            }
+                            
+                            @if (!string.IsNullOrEmpty(plan.Description))
+                            {
+                                <p class="mt-1">@plan.Description</p>
+                            }
+
+                            @if (plan.PricePerMonth == 0)
+                            {
+                                <h3 class="fw-bold h2">Free</h3>
+                            }
+                            else
+                            {
+                                <div class="d-flex gap-0 justify-content-center align-items-end">
+                                    <h3 class="fw-bold h2 mb-0">$@plan.PricePerMonth.ToString("0")
+                                    </h3>
+                                    <span>/month</span>
+                                </div>
+                            }
+                        </div>
+
+                        <div class="mb-4">
+                            @if (plan.ItemList.Any())
+                            {
+                                <ul class="list-unstyled mb-0 d-flex flex-column gap-2 small">
+                                    @foreach (var item in plan.ItemList)
+                                    {
+                                        <li class="d-flex gap-3">
+                                            <span class="icon-shape icon-xs bg-primary bg-opacity-10 text-primary rounded-circle">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="icon icon-tabler icons-tabler-outline icon-tabler-check">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                    <path d="M5 12l5 5l10 -10" />
+                                                </svg>
+                                            </span>
+                                            <span>@item</span>
+                                        </li>
+                                    }
+                                </ul>
+                            }
+                        </div>
+
+                        <div class="d-grid">
+                            @if (!string.IsNullOrEmpty(plan.ButtonLink))
+                            {
+                                <a href="@plan.ButtonLink" class="btn @(isMostPopular ? "btn-primary" : "btn-light")">
+                                    @plan.ButtonName
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="#!" class="btn @(isMostPopular ? "btn-primary" : "btn-light")">
+                                    @plan.ButtonName
+                                </a>
+                            }
+                        </div>
+                    </div>
+
+                    @if (isMostPopular)
+                    {
+                        <div>
+                            <span class="badge bg-primary position-absolute top-0 start-50 translate-middle-x mt-n3 rounded-pill text-xs">
+                                Most Popular
+                            </span>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="alert alert-info">
+        No pricing plans available.
+    </div>
+}

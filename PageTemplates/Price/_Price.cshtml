@@ -2,16 +2,119 @@
 @using Kentico.Content.Web.Mvc
 @using Kentico.Content.Web.Mvc.PageBuilder
 @using Kentico.Web.Mvc
+@using System.Linq
+@using CMS.ContentEngine
+@using CMS.Websites
+
+@inject IContentRetriever contentRetriever
+@inject IWebPageDataContextRetriever webPageDataContextRetriever
 
 @model TemplateViewModel<PageTemplates.Price.PricePageTemplateProperties>
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewData["Title"] = "Price";
+    
+    var webPageItemGuid = webPageDataContextRetriever.Retrieve().WebPage.WebPageItemGUID;
+    
+    var price = (await contentRetriever.RetrievePages<LearnHub.Price>(
+        new RetrievePagesParameters
+        {
+            LinkedItemsMaxLevel = 1
+        },
+        query => query
+            .Where(w => w.WhereEquals(nameof(WebPageFields.WebPageItemGUID), webPageItemGuid))
+            .TopN(1),
+        new RetrievalCacheSettings($"Price_{webPageItemGuid}", TimeSpan.FromMinutes(5)),
+        Context.RequestAborted))
+        .FirstOrDefault();
+    
+    ViewData["Title"] = price?.PriceTitle ?? "Price";
+    
+    var itemList = !string.IsNullOrEmpty(price?.PriceItemList)
+        ? price.PriceItemList.Split(new[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries)
+            .Select(item => item.Trim())
+            .Where(item => !string.IsNullOrEmpty(item))
+            .ToList()
+        : new List<string>();
+        
+    var buttonLink = "#!";
+    // ButtonLink handling can be enhanced later if needed
 }
 
 <section class="py-lg-13 py-8">
     <div class="container">
-        <editable-area area-identifier="main" />
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-12">
+                <div class="card shadow-sm rounded-5">
+                    <div class="card-body p-lg-8 p-6">
+                        @* Pricing header *@
+                        <div class="text-center mb-8">
+                            @if (!string.IsNullOrEmpty(price?.PriceTitle))
+                            {
+                                <h1 class="fw-bold h2 mb-3">@price.PriceTitle</h1>
+                            }
+                            @if (!string.IsNullOrEmpty(price?.PriceDescription))
+                            {
+                                <p class="text-muted">@price.PriceDescription</p>
+                            }
+                            
+                            @if (price != null)
+                            {
+                                @if (price.PricePerMonth == 0)
+                                {
+                                    <h2 class="fw-bold display-4 text-primary mt-4">Free</h2>
+                                }
+                                else
+                                {
+                                    <div class="d-flex gap-0 justify-content-center align-items-end mt-4">
+                                        <h2 class="fw-bold display-4 text-primary mb-0">$@price.PricePerMonth.ToString("0")</h2>
+                                        <span class="fs-5 text-muted mb-2">/month</span>
+                                    </div>
+                                }
+                            }
+                        </div>
+
+                        @* Features list *@
+                        @if (itemList.Any())
+                        {
+                            <div class="mb-6">
+                                <h3 class="h5 fw-bold mb-4">What's Included:</h3>
+                                <ul class="list-unstyled mb-0 d-flex flex-column gap-3">
+                                    @foreach (var item in itemList)
+                                    {
+                                        <li class="d-flex gap-3">
+                                            <span class="icon-shape icon-sm bg-primary bg-opacity-10 text-primary rounded-circle">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="icon icon-tabler icons-tabler-outline icon-tabler-check">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                    <path d="M5 12l5 5l10 -10" />
+                                                </svg>
+                                            </span>
+                                            <span>@item</span>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        }
+
+                        @* Call to action button *@
+                        @if (!string.IsNullOrEmpty(price?.ButtonName))
+                        {
+                            <div class="d-grid">
+                                <a href="@buttonLink" class="btn btn-primary btn-lg">
+                                    @price.ButtonName
+                                </a>
+                            </div>
+                        }
+                    </div>
+                </div>
+                
+                @* Editable area for additional content *@
+                <div class="mt-6">
+                    <editable-area area-identifier="main" />
+                </div>
+            </div>
+        </div>
     </div>
 </section>

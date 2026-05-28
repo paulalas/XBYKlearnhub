@@ -69,5 +69,11 @@ namespace LearnHub
 		/// ButtonLink.
 		/// </summary>
 		public IEnumerable<WebPageRelatedItem> ButtonLink { get; set; }
+
+
+		/// <summary>
+		/// PriceMostPopular.
+		/// </summary>
+		public bool PriceMostPopular { get; set; }
 	}
 }

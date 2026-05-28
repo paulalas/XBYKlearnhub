@@ -38,6 +38,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xXaWRnZXRzXE1lbnRvcnNXaWRnZXRcX01lbnRvcnNXaWRnZXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/work/Work/xbyk/learnhub/Components/Widgets/PricingWidget/_PricingWidget.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xXaWRnZXRzXFByaWNpbmdXaWRnZXRcX1ByaWNpbmdXaWRnZXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/work/Work/xbyk/learnhub/Components/Widgets/TestimonialsWidget/_TestimonialsWidget.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xXaWRnZXRzXFRlc3RpbW9uaWFsc1dpZGdldFxfVGVzdGltb25pYWxzV2lkZ2V0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
