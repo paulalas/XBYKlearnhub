@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LearnHub")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e5aefdafefa2d1cd637463d63cf189218b98a454")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b08f62d77470d6989330e99e8cb7cc3a45ce17e6")]
 [assembly: System.Reflection.AssemblyProductAttribute("LearnHub")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LearnHub")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

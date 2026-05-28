@@ -2,16 +2,117 @@
 @using Kentico.Content.Web.Mvc
 @using Kentico.Content.Web.Mvc.PageBuilder
 @using Kentico.Web.Mvc
+@using CMS.ContentEngine
+@using CMS.Websites
+
+@inject IContentRetriever contentRetriever
+@inject IWebPageDataContextRetriever webPageDataContextRetriever
 
 @model TemplateViewModel<PageTemplates.Testimonial.TestimonialPageTemplateProperties>
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewData["Title"] = "Testimonial";
+    
+    // Get the current page GUID
+    var webPageItemGuid = webPageDataContextRetriever.Retrieve().WebPage.WebPageItemGUID;
+    
+    // Retrieve the Testimonial page with all properties including linked items
+    var testimonial = (await contentRetriever.RetrievePages<LearnHub.Testimonial>(
+        new RetrievePagesParameters
+        {
+            LinkedItemsMaxLevel = 1  // Load linked Assets for TestimonialThumbnail
+        },
+        query => query
+            .Where(w => w.WhereEquals(nameof(WebPageFields.WebPageItemGUID), webPageItemGuid))
+            .TopN(1),
+        new RetrievalCacheSettings($"Testimonial_{webPageItemGuid}", TimeSpan.FromMinutes(5)),
+        Context.RequestAborted))
+        .FirstOrDefault();
+    
+    ViewData["Title"] = testimonial?.TestimonialName ?? "Testimonial";
+    
+    // Get thumbnail URL
+    var thumbnailUrl = testimonial?.TestimonialThumbnail?.FirstOrDefault()?.Photo?.Url;
 }
 
 <section class="py-lg-13 py-8">
     <div class="container">
-        <editable-area area-identifier="main" />
+        @if (testimonial != null)
+        {
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <article class="card rounded-5 shadow-sm border">
+                        <div class="card-body p-lg-8 p-6">
+                            @* Author info with thumbnail *@
+                            <div class="d-flex gap-4 align-items-center mb-10">
+                                @if (!string.IsNullOrEmpty(thumbnailUrl))
+                                {
+                                    <img src="@thumbnailUrl" alt="@testimonial.TestimonialName" class="avatar avatar-xxl rounded-circle">
+                                }
+                                else
+                                {
+                                    <div class="avatar avatar-xxl rounded-circle bg-light d-flex align-items-center justify-content-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+                                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                             class="icon icon-tabler icons-tabler-outline icon-tabler-user text-muted">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <circle cx="12" cy="7" r="4" />
+                                            <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                                        </svg>
+                                    </div>
+                                }
+                                <div>
+                                    <h1 class="h3 mb-2">@testimonial.TestimonialName</h1>
+                                    @if (!string.IsNullOrEmpty(testimonial.TestimonialJobDescription))
+                                    {
+                                        <p class="text-muted mb-0">@testimonial.TestimonialJobDescription</p>
+                                    }
+                                </div>
+                            </div>
+                            
+                            @* Stars rating *@
+                            <div class="d-flex gap-0 align-items-center mb-4 mt-8">
+                                @for (var i = 0; i < (int)testimonial.TestimonialStars; i++)
+                                {
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"
+                                         class="icon icon-tabler icons-tabler-filled icon-tabler-star text-warning">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.093 -6.26l3.093 6.26l6.9 1l-5 4.867l1.179 6.873z" />
+                                    </svg>
+                                }
+                                <span class="ms-2 text-muted">(@testimonial.TestimonialStars out of 5)</span>
+                            </div>
+                            
+                            @* Quote icon *@
+                            <div class="mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+                                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                     class="icon icon-tabler icons-tabler-outline icon-tabler-quote text-primary opacity-25">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M10 11h-4a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1h3a1 1 0 0 1 1 1v6c0 2.667 -1.333 4.333 -4 5" />
+                                    <path d="M19 11h-4a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1h3a1 1 0 0 1 1 1v6c0 2.667 -1.333 4.333 -4 5" />
+                                </svg>
+                            </div>
+                            
+                            @* Testimonial description *@
+                            <div class="lead mb-6">
+                                <p class="fs-4 fw-normal lh-lg">"@testimonial.TestimonialDescription"</p>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    @* Editable area for additional content *@
+                    <div class="mt-6">
+                        <editable-area area-identifier="main" />
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-warning">
+                <p class="mb-0">Testimonial not found.</p>
+            </div>
+        }
     </div>
 </section>
